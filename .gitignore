@@ -2,6 +2,9 @@
 /public/hot
 /public/storage
 /storage/*.key
+# Ürün görselleri ve büyük dosyaları git'e dahil etmiyoruz
+/storage/app/public
+/storage/logs
 /vendor
 .env
 .env.backup

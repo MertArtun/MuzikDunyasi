@@ -106,3 +106,50 @@ Bu proje [MIT lisansı](LICENSE) altında lisanslanmıştır.
 ## İletişim
 
 Mert Artun - [GitHub](https://github.com/MertArtun)
+
+## Sistem Bakımı ve Optimizasyon
+
+Projenin boyutunu yönetmek ve performansını artırmak için aşağıdaki bakım scriptleri eklenmiştir:
+
+### Görsel Optimizasyonu
+
+Ürün görsellerini optimize etmek için:
+
+```bash
+php scripts/optimize_images.php
+```
+
+Bu script, tüm ürün görsellerini kaliteyi koruyarak optimize eder ve projenin boyutunu önemli ölçüde azaltır.
+
+### Git Deposu Temizleme
+
+Git deposunu temizlemek ve küçültmek için:
+
+```bash
+./scripts/git_cleanup.sh
+```
+
+### Laravel Bakım İşlemleri
+
+Cache ve log temizliği için:
+
+```bash
+./scripts/maintenance.sh
+```
+
+### Manuel Optimizasyon Adımları
+
+1. **Log Dosyalarını Düzenli Temizleme**
+   - Log dosyaları düzenli olarak temizlenmelidir
+   - Log rotasyonu ayarlamak için Laravel yapılandırmasını güncelleyebilirsiniz
+
+2. **Büyük Dosyaları .gitignore'a Ekleme**
+   - Büyük medya dosyaları ve ürün görselleri Git deposuna eklenmemeli
+   - storage/app/public klasörü .gitignore dosyasına eklenmiştir
+
+3. **Composer Bağımlılıklarını Optimize Etme**
+   ```bash
+   composer install --optimize-autoloader --no-dev
+   ```
+
+Bu adımları düzenli olarak uygulamak, projenin düzgün çalışmasını sağlarken boyutunu kontrol altında tutar.
