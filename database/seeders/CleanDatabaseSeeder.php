@@ -20,11 +20,20 @@ class CleanDatabaseSeeder extends Seeder
     public function run(): void
     {
         // Önce mevcut ürün resimleri, ürünler ve kategoriler temizlenir
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        ProductImage::truncate();
-        Product::truncate();
-        Category::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        // SQLite için foreign key checks
+        if (DB::connection()->getDriverName() === 'sqlite') {
+            DB::statement('PRAGMA foreign_keys = OFF');
+            ProductImage::truncate();
+            Product::truncate();
+            Category::truncate();
+            DB::statement('PRAGMA foreign_keys = ON');
+        } else {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+            ProductImage::truncate();
+            Product::truncate();
+            Category::truncate();
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
         
         // Ana kategoriler oluşturulur
         $categoriesData = [
